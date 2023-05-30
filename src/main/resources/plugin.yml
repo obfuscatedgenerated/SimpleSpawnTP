@@ -1,0 +1,25 @@
+name: ${project.name}
+version: '${project.version}'
+main: ${project.groupId}.${project.artifactId}.Main
+api-version: 1.8
+prefix: ${project.name}
+authors: [ obfuscatedgenerated ]
+description: ${project.description}
+website: ollieg.codes
+commands:
+  spawn:
+    permission: sstp.spawncmd
+    description: Teleports you to spawn.
+    usage: /<command>
+permissions:
+  sstp.*:
+    description: Grants all SimpleSpawnTP permissions.
+    children:
+      sstp.spawncmd: true
+      sstp.bypass: true
+  sstp.bypass:
+    description: Allows player to bypass automatically being teleported to spawn on join.
+    default: op
+  sstp.spawncmd:
+      description: Allows player to use /spawn command.
+      default: true
