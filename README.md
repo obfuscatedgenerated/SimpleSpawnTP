@@ -1,6 +1,6 @@
 # SimpleSpawnTP
 
-> Sends players to spawn on join and allows them to go to spawn manually.
+> A Spigot plugin that sends players to spawn on join and allows them to go to spawn manually.
 
 ## Commands
 
