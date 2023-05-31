@@ -23,15 +23,15 @@ worlds:
     use_personal_spawn: false
 ```
 
-You can set the yaw that the player is facing when they go to spawn with the yaw property.
-Define each value in the yaws section with the key being the world name and the value being the yaw.
-Use F3 and look at the first number in the brackets in the "Facing" line to get the yaw.
-North = (+/-) 180.0, East = -90.0 / 270.0, South = 0.0, West = 90.0 / -270.0
-It can be a whole number or a decimal.
+You can set the yaw that the player is facing when they go to spawn with the yaw property.<br>
+Define each value in the yaws section with the key being the world name and the value being the yaw.<br>
+Use F3 and look at the first number in the brackets in the "Facing" line to get the yaw.<br>
+North = (+/-) 180.0, East = -90.0 / 270.0, South = 0.0, West = 90.0 / -270.0<br>
+It can be a whole number or a decimal.<br>
 Default value: 0.0
 
-You can set whether the player will be teleported to their personal spawn or the world spawn with the use_personal_spawn property.
-Personal spawn is set with /spawnpoint, beds, and respawn anchors.
-If this is set to true, the player will be teleported to their personal spawn.
-If this is set to false, the player will be teleported to the world spawn (/setworldspawn).
+You can set whether the player will be teleported to their personal spawn or the world spawn with the use_personal_spawn property.<br>
+Personal spawn is set with /spawnpoint, beds, and respawn anchors.<br>
+If this is set to true, the player will be teleported to their personal spawn.<br>
+If this is set to false, the player will be teleported to the world spawn (/setworldspawn).<br>
 Default value: false
