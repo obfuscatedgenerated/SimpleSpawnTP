@@ -1,7 +1,7 @@
 # You can set the yaw that the player is facing when they go to spawn here.
 # Define each value in the yaws section with the key being the world name and the value being the yaw.
 # Use F3 and look at the first number in the brackets in the "Facing" line to get the yaw.
-# North = (+/-) 180.0, East = -90.0, South = 0.0, West = 90.0
-# It should be within -360 to 360. It can be an integer or a decimal.
+# North = (+/-) 180.0, East = -90.0 / 270.0, South = 0.0, West = 90.0 / -270.0
+# It can be a whole number or a decimal.
 yaws:
   # world: 90.0
