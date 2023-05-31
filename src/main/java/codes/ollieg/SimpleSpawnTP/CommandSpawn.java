@@ -9,31 +9,56 @@ import org.bukkit.entity.Player;
 
 
 public final class CommandSpawn implements CommandExecutor {
-    private final ConfigurationSection yaws;
+    private final ConfigurationSection world_configs;
 
-    public CommandSpawn(ConfigurationSection yaws) {
-        this.yaws = yaws;
+    public CommandSpawn(ConfigurationSection world_configs) {
+        this.world_configs = world_configs;
     }
 
-    public void sendToSpawn(Player player) {
+
+    /**
+     * Returns the spawn location using the config.
+     *
+     * @param player The player to get the spawn location for.
+     * @return The spawn location.
+     */
+    private Location getAdjustedLocationFromConfig(Player player) {
         World world = player.getWorld();
-        Location spawn = world.getSpawnLocation();
 
-        if (this.yaws != null) {
-            String name = world.getName();
-
-            // if there are defined yaws and there is one for this world
-            if (this.yaws.get(name) != null) {
-                // accept double or int and convert to float
-                // set the float as the new yaw
-                if (this.yaws.isDouble(name)) {
-                    spawn.setYaw((float) this.yaws.getDouble(name));
-                } else if (this.yaws.isInt(name)) {
-                    spawn.setYaw((float) this.yaws.getInt(name));
-                }
-            }
+        // if there are no valid configs, return the default spawn
+        if (this.world_configs == null) {
+            return world.getSpawnLocation();
         }
 
+        // if there is no config for this world, return the default spawn
+        ConfigurationSection world_config = this.world_configs.getConfigurationSection(world.getName());
+        if (world_config == null) {
+            return world.getSpawnLocation();
+        }
+
+        // determine whether to use personal or global spawn
+        Location spawn;
+        if (world_config.getBoolean("use_personal_spawn")) {
+            spawn = player.getBedSpawnLocation();
+        } else {
+            spawn = world.getSpawnLocation();
+        }
+
+        // get yaw from config
+        // accept double or int and convert to float
+        // set the float as the new yaw
+        if (world_config.isDouble("yaw")) {
+            spawn.setYaw((float) world_config.getDouble("yaw"));
+        } else if (world_config.isInt("yaw")) {
+            spawn.setYaw((float) world_config.getInt("yaw"));
+        }
+
+        return spawn;
+    }
+
+
+    public void sendToSpawn(Player player) {
+        Location spawn = getAdjustedLocationFromConfig(player);
         boolean success = player.teleport(spawn);
 
         if (!success) {

@@ -16,8 +16,8 @@ public final class Main extends JavaPlugin implements Listener {
 
         getServer().getPluginManager().registerEvents(this, this);
 
-        ConfigurationSection yaws = getConfig().getConfigurationSection("yaws");
-        this.spawn_cmd = new CommandSpawn(yaws);
+        ConfigurationSection world_configs = getConfig().getConfigurationSection("worlds");
+        this.spawn_cmd = new CommandSpawn(world_configs);
         this.getCommand("spawn").setExecutor(spawn_cmd);
 
         getLogger().info("SimpleSpawnTP - Ready to go!");
